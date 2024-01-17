@@ -1,0 +1,29 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+{% block form %}
+<form method="POST" action="wiki/">
+     {% csrf_token %}
+    <input class="search" type="text" name="q" id="article" value="{{request.GET.q}}" placeholder="Search ...">  
+</form>
+
+{% endblock %}
+{% block body %}
+          
+<h1>All Pages</h1>
+{% if kol %}
+<ul>
+    <li><a href="{{entry}}">{{entry}}</a></li>
+</ul>
+{%else %}
+<ul>
+    {% for entry in entries %}
+        <li><a href="wiki/{{entry}}">{{entry}}</a></li>
+    {% endfor %}
+</ul>  
+{% endif %}
+<!-- <li><a href="wiki/{{ entry }}">{{ entry }}</a></li> -->
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+ {% block title %}{{ title }}{% endblock %}
+
+
+{% block form %}
+<form method="POST" action="wiki/">
+     {% csrf_token %}
+    <input class="search" type="text" name="q" id="article" value="{{request.GET.q}}" placeholder="Search ...">  
+</form>
+
+{% endblock %}
+
+{% block body %}         
+<h2>New page</h2>
+<div class="new_title">
+<form method="post" action="../get/">
+    {% csrf_token %}
+    <input class="new_title" type="text" name="newtitle" value="{{title}}" placeholder="Title ...">
+    <input type="submit" value="Save this page">
+<textarea name="newpage">It is place for type</textarea> 
+    </form>
+</div>
+{% endblock %}
